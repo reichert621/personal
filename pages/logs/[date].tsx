@@ -12,6 +12,7 @@ import {Input} from '@/components/ui/input';
 import {Label} from '@/components/ui/label';
 import {Goal, comparator} from '@/lib/goals';
 import {cn} from '@/lib/utils';
+import {useDarkMode} from '@/lib/hooks';
 
 const GoalInput = ({
   goal,
@@ -59,7 +60,9 @@ const GoalInput = ({
           htmlFor={goal.id}
           className={cn(
             'text-base font-medium',
-            isDone ? 'text-zinc-400 line-through' : ''
+            isDone
+              ? 'text-zinc-400 line-through dark:text-zinc-500'
+              : 'text-zinc-700 dark:text-zinc-200'
           )}
         >
           {label}
@@ -78,7 +81,10 @@ const GoalInput = ({
     return (
       <div key={goal.id} className="mt-4">
         <div className="flex items-center justify-between">
-          <Label htmlFor={goal.id} className="text-base font-medium">
+          <Label
+            htmlFor={goal.id}
+            className="text-base font-medium text-zinc-700 dark:text-zinc-200"
+          >
             {label}
           </Label>
           <span className="whitespace-nowrap rounded-full bg-blue-700 px-2 py-0.5 text-xs font-medium tracking-wide text-blue-100">
@@ -173,7 +179,9 @@ const LogDetails = ({className, date}: {className?: string; date: string}) => {
         </div>
       </div>
       <div className="mb-12">
-        <h2 className="mb-4 text-2xl font-bold">This week</h2>
+        <h2 className="mb-4 text-2xl font-bold text-zinc-800 dark:text-zinc-200">
+          This week
+        </h2>
         <div className="">
           {weekly.map((goal) => {
             return (
@@ -188,7 +196,9 @@ const LogDetails = ({className, date}: {className?: string; date: string}) => {
         </div>
       </div>
       <div className="mb-12">
-        <h2 className="mb-4 text-2xl font-bold">This month</h2>
+        <h2 className="mb-4 text-2xl font-bold text-zinc-800 dark:text-zinc-200">
+          This month
+        </h2>
         <div className="">
           {monthly.map((goal) => {
             return (
@@ -203,7 +213,9 @@ const LogDetails = ({className, date}: {className?: string; date: string}) => {
         </div>
       </div>
       <div className="mb-12">
-        <h2 className="mb-4 text-2xl font-bold">2024 goals</h2>
+        <h2 className="mb-4 text-2xl font-bold text-zinc-800 dark:text-zinc-200">
+          2024 goals
+        </h2>
         <div className="">
           {eoy.map((goal) => {
             return (
@@ -224,14 +236,15 @@ const LogDetails = ({className, date}: {className?: string; date: string}) => {
 const LogDetailsPage: NextPage = () => {
   const router = useRouter();
   const date = router.query.date as string;
-  const {isLoading: isLoadingUser, user, error: authError} = useAuth();
+  const {isDarkMode, toggle} = useDarkMode();
+  // const {isLoading: isLoadingUser, user, error: authError} = useAuth();
   const isToday = dayjs(date).isSame(dayjs(), 'day');
   const prev = dayjs(date).subtract(1, 'day');
   const next = dayjs(date).add(1, 'day');
 
   return (
-    <div className="flex min-h-screen w-full flex-1 flex-col bg-zinc-50 text-zinc-900">
-      <main className="mx-auto w-full max-w-xl flex-1 bg-white px-6 py-12">
+    <div className="flex min-h-screen w-full flex-1 flex-col bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100">
+      <main className="mx-auto w-full max-w-xl flex-1 bg-white px-6 py-12 dark:bg-zinc-900">
         <Button className="hidden" onClick={() => auth.signOut()}>
           Sign out
         </Button>
@@ -247,25 +260,32 @@ const LogDetailsPage: NextPage = () => {
             </Link>
           </Button>
 
-          {isToday ? (
-            <Button className="text-sm" size="sm" asChild>
-              <Link className="inline-flex gap-2" href={`/`}>
+          <div className="flex items-center gap-2">
+            <Button
+              className="text-sm"
+              size="sm"
+              variant={isToday ? 'default' : 'outline'}
+              asChild
+            >
+              <Link className="inline-flex gap-2" href={`/goals`}>
                 Dashboard
               </Link>
             </Button>
-          ) : (
-            <Button className="text-sm" size="sm" variant="secondary" asChild>
-              <Link
-                className="inline-flex gap-2"
-                href={`/logs/${next.format('YYYY-MM-DD')}`}
-              >
-                {next.format('MMM D')}
-                <ArrowRightIcon className="" />
-              </Link>
-            </Button>
-          )}
+
+            {!isToday && (
+              <Button className="text-sm" size="sm" variant="secondary" asChild>
+                <Link
+                  className="inline-flex gap-2"
+                  href={`/logs/${next.format('YYYY-MM-DD')}`}
+                >
+                  {next.format('MMM D')}
+                  <ArrowRightIcon className="" />
+                </Link>
+              </Button>
+            )}
+          </div>
         </div>
-        <h1 className="mb-8 mt-8 text-5xl font-bold text-zinc-900">
+        <h1 className="mb-8 mt-8 text-5xl font-bold text-zinc-900 dark:text-zinc-100">
           {isToday ? 'Today' : dayjs(date).format('MMMM D')}
         </h1>
 
