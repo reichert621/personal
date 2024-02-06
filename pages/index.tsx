@@ -288,7 +288,7 @@ const Dashboard = ({className}: {className?: string}) => {
                   const percentage = Math.round(pct * 100);
 
                   return (
-                    <HoverCard>
+                    <HoverCard key={date}>
                       <HoverCardTrigger asChild>
                         <Link key={date} href={`/logs/${date}`}>
                           <div
@@ -366,7 +366,7 @@ const Dashboard = ({className}: {className?: string}) => {
                   const percentage = Math.round(pct * 100);
 
                   return (
-                    <HoverCard>
+                    <HoverCard key={date}>
                       <HoverCardTrigger asChild>
                         <div
                           key={date}
@@ -434,7 +434,7 @@ const Dashboard = ({className}: {className?: string}) => {
             const percentage = Math.round(pct * 100);
 
             return (
-              <HoverCard>
+              <HoverCard key={date}>
                 <HoverCardTrigger asChild>
                   <div
                     key={date}
@@ -470,6 +470,7 @@ const Dashboard = ({className}: {className?: string}) => {
   );
 };
 
+// TODO: add dark mode and "powered by instant" at bottom!
 const IndexPage: NextPage = () => {
   const {isLoading: isLoadingUser, user, error: authError} = useAuth();
   const {isLoading, error, data} = useQuery({
