@@ -285,7 +285,7 @@ const LogDetailsPage: NextPage = () => {
             )}
           </div>
         </div>
-        <h1 className="mb-8 mt-8 text-5xl font-bold text-zinc-900 dark:text-zinc-100">
+        <h1 className="mb-8 mt-8 text-4xl font-bold text-zinc-900 dark:text-zinc-100 sm:text-5xl">
           {isToday ? 'Today' : dayjs(date).format('MMMM D')}
         </h1>
 

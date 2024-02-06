@@ -511,7 +511,7 @@ const IndexPage: NextPage = () => {
           </Button>
         </div>
         <div className="mb-8 mt-8 flex items-center justify-between">
-          <h1 className="text-5xl font-bold text-zinc-900 dark:text-zinc-100">
+          <h1 className="text-4xl font-bold text-zinc-900 dark:text-zinc-100 sm:text-5xl">
             2024 goals
           </h1>
         </div>
