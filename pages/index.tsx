@@ -495,7 +495,11 @@ const IndexPage: NextPage = () => {
   // }, []);
 
   return (
-    <div className="flex min-h-screen w-full flex-1 flex-col bg-zinc-50 text-zinc-900">
+    <div
+      className={cn(
+        'flex min-h-screen w-full flex-1 flex-col bg-zinc-50 text-zinc-900'
+      )}
+    >
       <main className="mx-auto w-full max-w-xl flex-1 bg-white px-6 py-12">
         <div className="flex justify-end">
           <Button className="text-sm" size="sm" variant="secondary" asChild>

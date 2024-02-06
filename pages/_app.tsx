@@ -1,7 +1,7 @@
 import '@/styles/globals.css';
 import type {AppProps} from 'next/app';
 import Head from 'next/head';
-import {Inter} from 'next/font/google';
+import {Inter, Lato} from 'next/font/google';
 import {init, useQuery, tx, transact} from '@instantdb/react';
 
 const sans = Inter({
@@ -10,9 +10,7 @@ const sans = Inter({
   subsets: ['latin'],
 });
 
-const APP_ID = '776cf290-5f95-40e1-b28e-ebdff591af24';
-
-init({appId: APP_ID});
+init({appId: process.env.NEXT_PUBLIC_INSTANT_APP_ID!});
 
 export default function App({Component, pageProps}: AppProps) {
   return (

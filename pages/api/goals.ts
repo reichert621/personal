@@ -2,7 +2,7 @@ import type {NextApiRequest, NextApiResponse} from 'next';
 import {init, query, transact, tx} from '@instantdb/admin';
 
 init({
-  appId: process.env.INSTANT_APP_ID!,
+  appId: process.env.NEXT_PUBLIC_INSTANT_APP_ID!,
   adminToken: process.env.INSTANT_ADMIN_TOKEN!,
 });
 
