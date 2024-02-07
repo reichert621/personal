@@ -1,11 +1,17 @@
 import '@/styles/globals.css';
 import type {AppProps} from 'next/app';
 import Head from 'next/head';
-import {Inter, Lato} from 'next/font/google';
+import {Inter, Lato, Fira_Code} from 'next/font/google';
 import {init, useQuery, tx, transact} from '@instantdb/react';
 
 const sans = Inter({
   variable: '--font-sans',
+  display: 'swap',
+  subsets: ['latin'],
+});
+
+const mono = Fira_Code({
+  variable: '--font-mono',
   display: 'swap',
   subsets: ['latin'],
 });
@@ -22,6 +28,7 @@ export default function App({Component, pageProps}: AppProps) {
         {`
           :root {
             --font-sans: ${sans.style.fontFamily};
+            --font-mono: ${mono.style.fontFamily};
           }
         `}
       </style>
