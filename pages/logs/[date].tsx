@@ -2,7 +2,13 @@ import {auth, id, transact, tx, useAuth, useQuery} from '@instantdb/react';
 import {NextPage} from 'next';
 import {useRouter} from 'next/router';
 import React from 'react';
-import {ArrowLeftIcon, ArrowRightIcon} from '@radix-ui/react-icons';
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  LightningBoltIcon,
+  MoonIcon,
+  SunIcon,
+} from '@radix-ui/react-icons';
 import Link from 'next/link';
 import dayjs from 'dayjs';
 
@@ -296,6 +302,36 @@ const LogDetailsPage: NextPage = () => {
           />
         )}
       </main>
+      <footer className="mx-auto w-full max-w-xl bg-white px-6 py-4 dark:bg-zinc-900">
+        <div className="flex items-end justify-between">
+          <Button
+            className={cn(
+              'h-8 w-8',
+              isDarkMode ? '' : 'border border-zinc-200'
+            )}
+            size="icon"
+            variant={isDarkMode ? 'secondary' : 'secondary'}
+            onClick={toggle}
+          >
+            {isDarkMode ? (
+              <MoonIcon className="h-4 w-4 animate-in fade-in-0" />
+            ) : (
+              <SunIcon className="h-4 w-4 animate-in fade-in-0" />
+            )}
+          </Button>
+          <span className="inline-flex items-center gap-1 text-sm text-zinc-400 dark:text-zinc-600">
+            <LightningBoltIcon className="text-blue-500" />
+            Powered by{' '}
+            <a
+              className="font-medium text-blue-400 hover:text-blue-500"
+              href="https://www.instantdb.com/"
+              target="_blank"
+            >
+              InstantDB
+            </a>
+          </span>
+        </div>
+      </footer>
     </div>
   );
 };

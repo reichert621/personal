@@ -1,7 +1,7 @@
 import '@/styles/globals.css';
 import type {AppProps} from 'next/app';
 import Head from 'next/head';
-import {Inter, Lato, Fira_Code} from 'next/font/google';
+import {Inter, Fira_Code} from 'next/font/google';
 import {init, useQuery, tx, transact} from '@instantdb/react';
 
 const sans = Inter({

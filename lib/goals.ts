@@ -357,7 +357,7 @@ export function calculateCompletionPercentage(
   // take the average percentages (rather than the total overall)
   return (
     percentages
-      .map((i) => (i.target ? i.count / i.target : 0))
+      .map((i) => (i.target ? Math.min(i.count / i.target, 1) : 0))
       .reduce((total, p) => total + p, 0) / percentages.length
   );
 }
